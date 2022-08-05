@@ -1,32 +1,26 @@
 import os
 from collections import defaultdict
-from traceback import print_tb
 import pytest
 import numpy as np
 
+# used this posts https://habr.com/ru/post/266479/
+def full_calc(N: int) -> int:
+    matrix = np.zeros((10*N, N), dtype=np.uint64)
+    # define first column with values for 1 digit
+    for i in range(10):
+        matrix[i, 0] = 1
 
-def full_calc(N: int):
-    # matrix = np.zeros((9*N,9*N), dtype=np.uint64)
-    # print(matrix)
-    sum: int = 0
-    i: int = 0
-    # calc N(k) for 0 to 9N sum
-    while i <= N*9:
-        sum += calc_lucky_ticket(N, i)**2
-        i += 1
-    return sum
+    for i in range(1, N):
+        for j in range(10*N):
+            curr_ind = j
+            # down by column
+            while curr_ind+10 > j and curr_ind >= 0:
+                matrix[j, i] += matrix[curr_ind, i-1]
+                curr_ind -= 1
 
+    data = np.square(matrix[:, -1])
 
-def calc_lucky_ticket(n: int, k: int) -> int:
-    if n == 1:
-        return 1 if 0 <= k <= 9 else 0
-    else:
-        sum: int = 0
-        l: int = 0
-        while l <= 9:
-            sum += calc_lucky_ticket(n-1, k-l)
-            l += 1
-        return sum
+    return np.sum(data, dtype=np.uint)
 
 
 def load_files(path):
@@ -51,6 +45,3 @@ def load_files(path):
 def test_check_tickets(files):
     input, output = files
     assert full_calc(input) == output
-
-
-print(full_calc(7))
