@@ -38,6 +38,8 @@ def fibo_linear(N: int) -> int:
         f2 = f
     return f
 
+# O(N^2)
+
 
 def count_of_simple(N: int) -> int:
     count: int = 0
