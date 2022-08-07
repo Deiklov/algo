@@ -5,6 +5,7 @@ from decimal import *
 from middle import count_of_simple_arr
 from middle import simple_eratosfen
 from middle import simple_eratosfen_mem_opt
+from middle import simple_eratosfen_on
 
 
 @pytest.mark.parametrize("files", load_files_for_fibo_and_simple('../5.Primes'))
@@ -33,4 +34,7 @@ def test_simple_eratosfen_mem_opt(files):
     assert simple_eratosfen_mem_opt(input) == output
 
 
-# print(simple_eratosfen_mem_opt(11))
+@pytest.mark.parametrize("files", load_files_for_fibo_and_simple('../5.Primes'))
+def test_simple_eratosfen_on(files):
+    input, output = files
+    assert simple_eratosfen_on(input) == output

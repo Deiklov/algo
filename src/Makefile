@@ -22,3 +22,9 @@ simpleeratosfen:
 	pytest -v -s --durations=0 test_simple.py::test_simple_eratosfen
 simpleeratosfenmem:
 	pytest -v -s --durations=0 test_simple.py::test_simple_eratosfen_mem_opt
+simpleeratosfenon:
+	pytest -v -s --durations=0 test_simple.py::test_simple_eratosfen_on
+
+
+testpower:
+	pytest -v -s --durations=0 --timeout=70 test_power.py

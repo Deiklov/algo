@@ -137,3 +137,26 @@ def simple_eratosfen_mem_opt(N: int) -> int:
             count += 1
     print(psutil.Process(os.getpid()).memory_info().rss / 1024 ** 2)
     return count+1  # include 2 in first even bit
+
+
+def simple_eratosfen_on(N: int) -> int:
+    if N == 1:
+        return 0
+    if N == 2:
+        return 1
+
+    pr: list = []
+    lp = np.zeros(N+1, int)
+
+    for i in range(2,N+1):
+        if lp[i] == 0:
+            lp[i] = i
+            pr.append(i)
+        for p in pr:
+            if p <= lp[i] and p*i <= N:
+                lp[p*i] = p
+            else:
+                break
+    print(psutil.Process(os.getpid()).memory_info().rss / 1024 ** 2)
+
+    return len(pr)

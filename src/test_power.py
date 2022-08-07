@@ -17,12 +17,13 @@ def test_check_power(files):
 @pytest.mark.parametrize("files", load_files_for_power('../3.Power'))
 def test_power_linear_log(files):
     number, power, out = files
-    assert round(power_linear_log(number, power), 11) == out
+    res = power_linear_log(number, power)
+    assert "{:.7f}".format(res) == "{:.7f}".format(out)
 
 
 @pytest.mark.parametrize("files", load_files_for_power('../3.Power'))
 def test_power_log(files):
     number, power, out = files
-    res = Decimal(power_log(number, power))
-    setcontext(Context(prec=11, rounding=ROUND_DOWN))
-    assert "{:.11f}".format(res) == str(out)
+    res = power_log(number, power)
+    # setcontext(Context(prec=11, rounding=ROUND_DOWN))
+    assert "{:.6f}".format(res) == "{:.6f}".format(out)
