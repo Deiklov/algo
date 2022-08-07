@@ -3,6 +3,8 @@ from math import sqrt
 
 from matrix import Matrix
 import numpy as np
+import os
+import psutil
 
 
 def power_linear_log(number: float, power: int) -> float:
@@ -95,7 +97,43 @@ def simple_eratosfen(N: int) -> int:
     # zero and one are not prime
     arr[0] = False
     arr[1] = False
-    for i in range(2, N+1):
-        for j in range(i+i, N+1, i):
+    for i in range(2, round(sqrt(N))+1):
+        for j in range(i*i, N+1, i):
             arr[j] = False
+    print(psutil.Process(os.getpid()).memory_info().rss / 1024 ** 2)
+
     return np.sum(arr)
+
+
+def simple_eratosfen_mem_opt(N: int) -> int:
+    if N == 1:
+        return 0
+    if N == 2:
+        return 1
+    arr = np.full(shape=(N//64+1),
+                  fill_value=np.iinfo(np.uintc).max, dtype=np.uintc)
+    end = (N-(arr.size-1)*64)//2
+    if N % 2 == 0:
+        end -= 1
+    # clear 0 and 1 bits
+    arr[0] &= ~(1 << 0)  # set 0 to False number 1
+    arr[0] |= 1 << 1  # set 1 to True number 3
+
+    for i in range(2, round(sqrt(N))+1):
+        for j in range(i*i, N+1, i):
+            if j % 2 == 1:
+                pos = j//2
+                base = pos//32
+                offset = pos-base*32
+                arr[base] &= ~(1 << offset)  # set bit to zero
+
+    # print(psutil.Process(os.getpid()).memory_info().rss / 1024 ** 2)
+    count = 0
+    for x in arr[:-1]:
+        count += bin(x).count("1")
+    # analyze last bytes
+    for y in range(end):
+        if (arr[arr.size-1] >> (y+1)) & 1:
+            count += 1
+    print(psutil.Process(os.getpid()).memory_info().rss / 1024 ** 2)
+    return count+1  # include 2 in first even bit
