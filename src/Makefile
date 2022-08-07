@@ -27,4 +27,10 @@ simpleeratosfenon:
 
 
 testpower:
-	pytest -v -s --durations=0 --timeout=70 test_power.py
+	pytest -v -s --durations=0 test_power.py
+
+testfibo:
+	pytest -v -s --durations=0 test_fibo.py
+
+testprime:
+	pytest -v -s --durations=0 test_simple.py
