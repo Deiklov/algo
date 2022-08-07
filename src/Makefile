@@ -18,3 +18,5 @@ fibomatrix:
 	pytest -v -s --durations=0 test_fibo.py::test_check_fibo_matrix
 simplearr:
 	pytest -v -s --durations=0 test_simple.py::test_count_of_simple_arr
+simpleeratosfen:
+	pytest -v -s --durations=0 test_simple.py::test_simple_eratosfen

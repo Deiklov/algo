@@ -2,6 +2,7 @@
 from math import sqrt
 
 from matrix import Matrix
+import numpy as np
 
 
 def power_linear_log(number: float, power: int) -> float:
@@ -83,3 +84,18 @@ def count_of_simple_arr(N: int) -> int:
             primes.append(i)
             count_simple += 1
     return count_simple
+
+
+def simple_eratosfen(N: int) -> int:
+    if N == 1:
+        return 0
+    if N == 2:
+        return 1
+    arr = np.full((N+1), True)
+    # zero and one are not prime
+    arr[0] = False
+    arr[1] = False
+    for i in range(2, N+1):
+        for j in range(i+i, N+1, i):
+            arr[j] = False
+    return np.sum(arr)
