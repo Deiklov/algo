@@ -5,6 +5,7 @@ natsort==8.1.0
 numpy==1.23.1
 packaging==21.3
 pluggy==1.0.0
+psutil==5.9.1
 py==1.11.0
 pycodestyle==2.9.1
 pyparsing==3.0.9
