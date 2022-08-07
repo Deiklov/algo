@@ -1,9 +1,5 @@
-# O(N)
 
-
-from math import log2, ceil, sqrt
-from traceback import print_tb
-from unittest import result
+from math import sqrt
 
 from matrix import Matrix
 
@@ -66,3 +62,24 @@ def fibo_matrix(N: int) -> int:
     matr = Matrix([[1, 1], [1, 0]])
     matr = matr**(N-1)
     return matr.matr[0][0]
+
+
+def count_of_simple_arr(N: int) -> int:
+    primes: list = []
+
+    def is_simple(N: int) -> bool:
+        for i in primes:
+            if N % i == 0:
+                return False
+        return True
+
+    if N == 1:
+        return 0
+    if N == 2:
+        return 1
+    count_simple: int = 0
+    for i in range(2, N+1):
+        if is_simple(i):
+            primes.append(i)
+            count_simple += 1
+    return count_simple
