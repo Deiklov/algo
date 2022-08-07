@@ -1,9 +1,8 @@
 import pytest
-from junior import count_of_simple, fibo_exp, fibo_linear, power_linear
-from load_data import load_files_for_power, load_files_for_fibo_and_simple
-import sys
+from junior import count_of_simple
+from load_data import load_files_for_fibo_and_simple
 from decimal import *
-from middle import count_of_simple_arr, fibo_gold, fibo_matrix, power_linear_log, power_log
+from middle import count_of_simple_arr
 
 
 @pytest.mark.parametrize("files", load_files_for_fibo_and_simple('../5.Primes'))

@@ -1,9 +1,8 @@
 import pytest
-from junior import count_of_simple, fibo_exp, fibo_linear, power_linear
-from load_data import load_files_for_power, load_files_for_fibo_and_simple
-import sys
+from junior import power_linear
+from load_data import load_files_for_power
 from decimal import *
-from middle import count_of_simple_arr, fibo_gold, fibo_matrix, power_linear_log, power_log
+from middle import power_linear_log, power_log
 
 
 @pytest.mark.parametrize("files", load_files_for_power('../3.Power'))
@@ -18,7 +17,7 @@ def test_check_power(files):
 @pytest.mark.parametrize("files", load_files_for_power('../3.Power'))
 def test_power_linear_log(files):
     number, power, out = files
-    assert round(power_linear(number, power), 11) == out
+    assert round(power_linear_log(number, power), 11) == out
 
 
 @pytest.mark.parametrize("files", load_files_for_power('../3.Power'))
