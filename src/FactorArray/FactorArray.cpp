@@ -1,7 +1,7 @@
 #include "FactorArray.hpp"
 
 FactorArray::FactorArray() {
-  arr = new int[0];
+  arr = new int[0]();
   size = 0;
   cap = 0;
   scale_koef = 2;
@@ -9,6 +9,7 @@ FactorArray::FactorArray() {
 
 void FactorArray::add(int item, u_int64_t index) {
   assert(index >= 0);
+  assert(size <= cap);
   if (index < size && size == cap) {
     grow();// made x2 for size and cap
   }
@@ -22,7 +23,13 @@ void FactorArray::add(int item, u_int64_t index) {
     size++;
     return;
   }
-
+  if (index >= cap) {
+    do {
+      grow();
+    } while (cap <= index);
+    arr[index] = item;
+    size = index + 1;
+  }
 }
 
 string FactorArray::Getstr() {
@@ -37,32 +44,39 @@ string FactorArray::Getstr() {
 
 int FactorArray::remove(u_int64_t index) {
   assert(index < size);
-  auto item = arr[index];
-  auto arr2 = new int[size - 1]();
-
-  for (int i = 0; i < index; ++i) {
-    arr2[i] = arr[i];
-  }
-  for (int i = index + 1; i < size; ++i) {
-    arr2[i - 1] = arr[i];
+  auto ret_data = arr[index];
+  // copy right part
+  for (int i = index; i < size - 1; ++i) {
+    arr[i] = arr[i + 1];
   }
   size--;
-  arr = arr2;
-  return item;
+  if (size * scale_koef == cap) {
+    compress();
+  }
+  return ret_data;
 }
 // x2 for cap and copy elems, size not change
 void FactorArray::grow() {
-  if (size == 0) {
+  if (size == 0 && cap == 0) {
     size = 0;
     cap = 1;
     delete[] arr;
-    arr = new int[1];
+    arr = new int[1]();
     return;
   }
 
-  auto arr2 = new int[cap *= 2];
+  auto arr2 = new int[cap *= scale_koef]();
   for (int i = 0; i < size; ++i) {
     arr2[i] = arr[i];
   }
   delete[] arr;
+  arr = arr2;
+}
+void FactorArray::compress() {
+  auto arr2 = new int[cap /= scale_koef]();
+  for (int i = 0; i < size; ++i) {
+    arr2[i] = arr[i];
+  }
+  delete[] arr;
+  arr = arr2;
 }

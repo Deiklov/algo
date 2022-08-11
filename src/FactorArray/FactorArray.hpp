@@ -13,6 +13,7 @@ class FactorArray {
   void add(int item, u_int64_t index);
   int remove(u_int64_t index);
   void grow();
+  void compress();
   string Getstr();
 };
 

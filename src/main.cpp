@@ -61,14 +61,19 @@ TEST(VectorArrayTest, BaseTestAdd) {
 TEST(FactorArrayTest, BaseTestAdd) {
   auto factor_array = FactorArray();
   factor_array.add(5, 4);
-  EXPECT_EQ(factor_array.Getstr(), "0 0 0 0 5 0");
+  EXPECT_EQ(factor_array.Getstr(), "0 0 0 0 5");
   for (int i = 0; i < 5; ++i) {
     factor_array.add(i, 0);
   }
-  EXPECT_EQ(factor_array.Getstr(), "4 3 2 1 0 0 0 0 0 5 0");
-  EXPECT_EQ(factor_array.remove(factor_array.size - 1), 0);
+  EXPECT_EQ(factor_array.Getstr(), "4 3 2 1 0 0 0 0 0 5");
   EXPECT_EQ(factor_array.remove(factor_array.size - 1), 5);
+  EXPECT_EQ(factor_array.remove(factor_array.size - 1), 0);
   EXPECT_EQ(factor_array.remove(1), 3);
+  EXPECT_EQ(factor_array.remove(factor_array.size - 1), 0);
+  EXPECT_EQ(factor_array.remove(factor_array.size - 1), 0);
+  EXPECT_EQ(factor_array.remove(factor_array.size - 1), 0);
+  EXPECT_EQ(factor_array.Getstr(), "4 2 1 0");
+
 }
 
 int main(int argc, char **argv) {
