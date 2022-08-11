@@ -32,12 +32,16 @@ void SingleArray::add(int item, u_int64_t index) {
 
 }
 
-void SingleArray::print() {
-  for (int i = 0; i < size; ++i) {
-    printf("%d ", arr[i]);
+string SingleArray::getstr() {
+  string str;
+  for (int i = 0; i < size - 1; ++i) {
+    str += to_string(arr[i]);
+    str += " ";
   }
-  printf("\n");
+  str += to_string(arr[size - 1]);
+  return str;
 }
+
 int SingleArray::remove(u_int64_t index) {
   return 0;
 }

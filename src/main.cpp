@@ -8,13 +8,10 @@ TEST(HelloTest, BasicAssertions) {
   auto kekmda = SingleArray();
   kekmda.add(1, 3);
   cout << kekmda.size << endl;
-  kekmda.print();
-  EXPECT_EQ(kekmda.arr[3], 1);
+  EXPECT_EQ(kekmda.getstr(), "0 0 0 1");
   kekmda.add(2, 3);
   EXPECT_EQ(kekmda.arr[3], 2);
-  kekmda.print();
   EXPECT_EQ(kekmda.arr[4], 1);
-  kekmda.print();
 }
 
 int main(int argc, char **argv) {
