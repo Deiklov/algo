@@ -7,7 +7,7 @@ SingleArray::SingleArray() {
 void SingleArray::add(int item, u_int64_t index) {
 //  grow array
   if (index >= size) {
-    auto arr2 = new int[index + 1];
+    auto arr2 = new int[index + 1]();
     for (int i = 0; i < size; ++i) {
       arr2[i] = arr[i];
     }
@@ -15,7 +15,7 @@ void SingleArray::add(int item, u_int64_t index) {
     size = index + 1;
     arr = arr2;
   } else {
-    auto arr2 = new int[size + 1];
+    auto arr2 = new int[size + 1]();
     for (int i = 0; i < size; ++i) {
       arr2[i] = arr[i];
     }
