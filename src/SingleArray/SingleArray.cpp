@@ -6,6 +6,8 @@ SingleArray::SingleArray() {
 }
 void SingleArray::add(int item, u_int64_t index) {
 //  grow array
+  assert(index >= 0);
+
   if (index >= size) {
     auto arr2 = new int[index + 1]();
     for (int i = 0; i < size; ++i) {
@@ -41,5 +43,17 @@ string SingleArray::Getstr() {
 }
 
 int SingleArray::remove(u_int64_t index) {
-  return 0;
+  assert(index < size);
+  auto item = arr[index];
+  auto arr2 = new int[size - 1]();
+
+  for (int i = 0; i < index; ++i) {
+    arr2[i] = arr[i];
+  }
+  for (int i = index + 1; i < size; ++i) {
+    arr2[i - 1] = arr[i];
+  }
+  size--;
+  arr = arr2;
+  return item;
 }
