@@ -14,9 +14,7 @@ void SingleArray::add(int item, u_int64_t index) {
     arr2[index] = item;
     size = index + 1;
     arr = arr2;
-  }
-//  replace elements
-  if (index < size) {
+  } else {
     auto arr2 = new int[size + 1];
     for (int i = 0; i < size; ++i) {
       arr2[i] = arr[i];
@@ -27,12 +25,12 @@ void SingleArray::add(int item, u_int64_t index) {
       arr2[i + 1] = arr[i];
     }
     arr = arr2;
-
+    size++;
   }
 
 }
 
-string SingleArray::getstr() {
+string SingleArray::Getstr() {
   string str;
   for (int i = 0; i < size - 1; ++i) {
     str += to_string(arr[i]);

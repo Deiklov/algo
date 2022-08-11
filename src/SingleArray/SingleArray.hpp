@@ -10,7 +10,7 @@ class SingleArray {
   explicit SingleArray();
   void add(int item, u_int64_t index);
   int remove(u_int64_t index);
-  string getstr();
+  string Getstr();
 };
 
 #endif //ARRAYS__SINGLEARRAY_HPP_

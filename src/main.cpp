@@ -8,8 +8,9 @@ TEST(HelloTest, BasicAssertions) {
   auto kekmda = SingleArray();
   kekmda.add(1, 3);
   cout << kekmda.size << endl;
-  EXPECT_EQ(kekmda.getstr(), "0 0 0 1");
+  EXPECT_EQ(kekmda.Getstr(), "0 0 0 1");
   kekmda.add(2, 3);
+  EXPECT_EQ(kekmda.Getstr(), "0 0 0 2 1");
   EXPECT_EQ(kekmda.arr[3], 2);
   EXPECT_EQ(kekmda.arr[4], 1);
 }
