@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 #include "SingleArray/SingleArray.hpp"
 #include "VectorArray/VectorArray.hpp"
+#include "FactorArray/FactorArray.hpp"
 
 using namespace std;
 // Demonstrate some basic assertions.
@@ -11,7 +12,6 @@ TEST(SingleArrayTest, BaseTestAdd) {
   single_array.add(1, 3);
   EXPECT_EQ(single_array.Getstr(), "0 0 0 1");
   EXPECT_EQ(single_array.size, 4);
-  printf("%d", single_array.arr[5]);
 
   single_array.add(2, 3);
   EXPECT_EQ(single_array.Getstr(), "0 0 0 2 1");
@@ -56,8 +56,19 @@ TEST(VectorArrayTest, BaseTestAdd) {
   EXPECT_EQ(vector_array.remove(vector_array.size - 1), 0);
   EXPECT_EQ(vector_array.remove(vector_array.size - 1), 5);
   EXPECT_EQ(vector_array.remove(1), 3);
+}
 
-  cout << vector_array.Getstr() << endl;
+TEST(FactorArrayTest, BaseTestAdd) {
+  auto factor_array = FactorArray();
+  factor_array.add(5, 4);
+  EXPECT_EQ(factor_array.Getstr(), "0 0 0 0 5 0");
+  for (int i = 0; i < 5; ++i) {
+    factor_array.add(i, 0);
+  }
+  EXPECT_EQ(factor_array.Getstr(), "4 3 2 1 0 0 0 0 0 5 0");
+  EXPECT_EQ(factor_array.remove(factor_array.size - 1), 0);
+  EXPECT_EQ(factor_array.remove(factor_array.size - 1), 5);
+  EXPECT_EQ(factor_array.remove(1), 3);
 }
 
 int main(int argc, char **argv) {
