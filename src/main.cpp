@@ -46,8 +46,18 @@ TEST(SingleArrayTest, BaseTestRemove) {
 }
 
 TEST(VectorArrayTest, BaseTestAdd) {
-  auto vector_array = VectorArray(20);
-  EXPECT_EQ(3, 3);
+  auto vector_array = VectorArray(2);
+  vector_array.add(5, 4);
+  EXPECT_EQ(vector_array.Getstr(), "0 0 0 0 5 0");
+  for (int i = 0; i < 5; ++i) {
+    vector_array.add(i, 0);
+  }
+  EXPECT_EQ(vector_array.Getstr(), "4 3 2 1 0 0 0 0 0 5 0");
+  EXPECT_EQ(vector_array.remove(vector_array.size - 1), 0);
+  EXPECT_EQ(vector_array.remove(vector_array.size - 1), 5);
+  EXPECT_EQ(vector_array.remove(1), 3);
+
+  cout << vector_array.Getstr() << endl;
 }
 
 int main(int argc, char **argv) {

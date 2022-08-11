@@ -7,6 +7,7 @@ class VectorArray {
  public:
   int *arr;
   int size;
+  int scale_size;
   explicit VectorArray(uint64_t scale_size);
   void add(int item, u_int64_t index);
   int remove(u_int64_t index);

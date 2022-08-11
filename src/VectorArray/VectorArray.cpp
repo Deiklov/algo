@@ -1,29 +1,35 @@
 #include "VectorArray.hpp"
 
-VectorArray::VectorArray(uint64_t scale_size) {
+VectorArray::VectorArray(uint64_t _scale_size) {
   arr = new int[0];
   size = 0;
+  scale_size = _scale_size;
 }
+
 void VectorArray::add(int item, u_int64_t index) {
 //  grow array
   assert(index >= 0);
 
   if (index >= size) {
-    auto arr2 = new int[index + 1]();
+    auto arr2 = new int[index + scale_size]();//set all memory cells as zero
+    // copy old data
     for (int i = 0; i < size; ++i) {
       arr2[i] = arr[i];
     }
+    // set new item
     arr2[index] = item;
-    size = index + 1;
+    // resize
+    size = index + scale_size;
+    // change pointer to arr
     arr = arr2;
   } else {
-    auto arr2 = new int[size + 1]();
+    auto arr2 = new int[size + scale_size]();
     for (int i = 0; i < size; ++i) {
       arr2[i] = arr[i];
     }
     arr2[index] = item;
 
-    for (int i = index; i < size + 1; ++i) {
+    for (int i = index; i < size + scale_size; ++i) {
       arr2[i + 1] = arr[i];
     }
     arr = arr2;

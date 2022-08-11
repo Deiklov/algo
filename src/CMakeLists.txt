@@ -8,7 +8,7 @@ set(LIBRARIES gtest pthread)
 
 set(SOURCE_EXE main.cpp SingleArray/SingleArray.cpp SingleArray/SingleArray.hpp VectorArray/VectorArray.cpp VectorArray/VectorArray.hpp)
 
-add_library(Arrays SingleArray/SingleArray.cpp  VectorArray/VectorArray.cpp)
+add_library(Arrays SingleArray/SingleArray.cpp VectorArray/VectorArray.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCE_EXE})
 
