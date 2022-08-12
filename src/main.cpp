@@ -3,6 +3,7 @@
 #include "SingleArray/SingleArray.hpp"
 #include "VectorArray/VectorArray.hpp"
 #include "FactorArray/FactorArray.hpp"
+#include "PriorityQueue/PriorityQueue.hpp"
 
 using namespace std;
 // Demonstrate some basic assertions.
@@ -73,7 +74,11 @@ TEST(FactorArrayTest, BaseTestAdd) {
   EXPECT_EQ(factor_array.remove(factor_array.size - 1), 0);
   EXPECT_EQ(factor_array.remove(factor_array.size - 1), 0);
   EXPECT_EQ(factor_array.Getstr(), "4 2 1 0");
+}
 
+TEST(PriorityQueueTest, BaseQueueDequeue) {
+  auto priory_queue = PriorityQueue();
+  priory_queue.enqueue(1, 2);
 }
 
 int main(int argc, char **argv) {

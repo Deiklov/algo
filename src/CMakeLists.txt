@@ -8,7 +8,7 @@ add_subdirectory(./googletest-release-1.12.1)
 set(LIBRARIES gtest pthread)
 
 set(SOURCE_EXE SingleArray/SingleArray.cpp
-        VectorArray/VectorArray.cpp FactorArray/FactorArray.cpp)
+        VectorArray/VectorArray.cpp FactorArray/FactorArray.cpp PriorityQueue/PriorityQueue.cpp)
 
 add_library(Arrays ${SOURCE_EXE})
 

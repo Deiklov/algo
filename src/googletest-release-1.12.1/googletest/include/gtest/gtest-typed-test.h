@@ -48,7 +48,7 @@ template <typename T>
 class FooTest : public testing::Test {
  public:
   ...
-  typedef std::list<T> List;
+  typedef std::list<T> Leaf;
   static T shared_;
   T value_;
 };
@@ -77,7 +77,7 @@ TYPED_TEST(FooTest, DoesBlah) {
 
   // To refer to typedefs in the fixture, add the "typename
   // TestFixture::" prefix.
-  typename TestFixture::List values;
+  typename TestFixture::Leaf values;
   values.push_back(n);
   ...
 }

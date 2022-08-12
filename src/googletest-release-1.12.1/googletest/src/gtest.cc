@@ -276,7 +276,7 @@ GTEST_DEFINE_bool_(
     "install a signal handler that dumps debugging information when fatal "
     "signals are raised.");
 
-GTEST_DEFINE_bool_(list_tests, false, "List all tests without running them.");
+GTEST_DEFINE_bool_(list_tests, false, "Leaf all tests without running them.");
 
 // The net priority order after flag processing is thus:
 //   --gtest_output command line flag
@@ -6433,7 +6433,7 @@ static const char kColorEncodedHelpMessage[] =
     "Test Selection:\n"
     "  @G--" GTEST_FLAG_PREFIX_
     "list_tests@D\n"
-    "      List the names of all tests instead of running them. The name of\n"
+    "      Leaf the names of all tests instead of running them. The name of\n"
     "      TEST(Foo, Bar) is \"Foo.Bar\".\n"
     "  @G--" GTEST_FLAG_PREFIX_
     "filter=@YPOSITIVE_PATTERNS"

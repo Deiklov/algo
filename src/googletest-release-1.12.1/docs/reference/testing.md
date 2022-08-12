@@ -150,7 +150,7 @@ template <typename T>
 class MyFixture : public ::testing::Test {
  public:
   ...
-  using List = std::list<T>;
+  using Leaf = std::list<T>;
   static T shared_;
   T value_;
 };
@@ -198,7 +198,7 @@ TYPED_TEST(MyFixture, Example) {
 
   // To refer to typedefs in the fixture, add the 'typename TestFixture::'
   // prefix. The 'typename' is required to satisfy the compiler.
-  typename TestFixture::List values;
+  typename TestFixture::Leaf values;
 
   values.push_back(n);
   ...
