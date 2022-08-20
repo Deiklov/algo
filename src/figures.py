@@ -43,6 +43,3 @@ def rook_mask(pos: int):
     res ^= (gorizonal_mask | vertical_mask)
     res &= 0xffffffffffffffff
     return (count_set_bits(int(res)), res)
-
-
-print(rook_mask(36))
