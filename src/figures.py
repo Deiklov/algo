@@ -1,6 +1,3 @@
-from doctest import master
-import numpy as np
-
 from bits_count import count_set_bits, count_set_bits_cash, count_set_bits_linear
 
 
@@ -33,3 +30,19 @@ def horse_mask(pos: int):
     mask = mask & 0xffffffffffffffff
 
     return (count_set_bits_cash(int(mask)), mask)
+
+
+def rook_mask(pos: int):
+    number = pos//8
+    alpha = pos % 8
+    gorizonal_mask = 0xff
+    vertical_mask = 0x101010101010101
+    gorizonal_mask <<= number*8
+    vertical_mask <<= alpha
+    res = 1 << pos
+    res ^= (gorizonal_mask | vertical_mask)
+    res &= 0xffffffffffffffff
+    return (count_set_bits(int(res)), res)
+
+
+print(rook_mask(36))
