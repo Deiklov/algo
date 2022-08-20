@@ -15,7 +15,7 @@ def king_mask(pos: int):
     # adaptive for python int
     mask = mask & 0xffffffffffffffff
 
-    return (countSetBits(int(mask)), mask)
+    return (countSetBitsLinear(int(mask)), mask)
 
 
 def horse_mask(pos: int):
@@ -35,8 +35,16 @@ def horse_mask(pos: int):
 
 def countSetBits(n: int):
     count = 0
-    while (n):
+    while (n > 0):
         n &= (n-1)
         count += 1
     return count
 
+
+def countSetBitsLinear(n: int) -> int:
+    count = 0
+    while (n > 0):
+        if n & 1 == 1:
+            count += 1
+        n >>= 1
+    return count
