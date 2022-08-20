@@ -1,6 +1,8 @@
 from doctest import master
 import numpy as np
 
+from bits_count import count_set_bits, count_set_bits_cash, count_set_bits_linear
+
 
 def king_mask(pos: int):
     bit_pos = 1 << pos
@@ -15,7 +17,7 @@ def king_mask(pos: int):
     # adaptive for python int
     mask = mask & 0xffffffffffffffff
 
-    return (countSetBitsLinear(int(mask)), mask)
+    return (count_set_bits_linear(int(mask)), mask)
 
 
 def horse_mask(pos: int):
@@ -30,21 +32,4 @@ def horse_mask(pos: int):
     # adaptive for python int
     mask = mask & 0xffffffffffffffff
 
-    return (countSetBits(int(mask)), mask)
-
-
-def countSetBits(n: int):
-    count = 0
-    while (n > 0):
-        n &= (n-1)
-        count += 1
-    return count
-
-
-def countSetBitsLinear(n: int) -> int:
-    count = 0
-    while (n > 0):
-        if n & 1 == 1:
-            count += 1
-        n >>= 1
-    return count
+    return (count_set_bits_cash(int(mask)), mask)
