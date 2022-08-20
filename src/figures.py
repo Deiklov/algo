@@ -43,3 +43,24 @@ def rook_mask(pos: int):
     res ^= (gorizonal_mask | vertical_mask)
     res &= 0xffffffffffffffff
     return (count_set_bits(int(res)), res)
+
+
+def bishop_mask(pos: int):
+    number = pos//8
+    alpha = pos % 8
+    high_low_mask = 0x102040810204080
+    low_high_mask = 0x8040201008040201
+    if number <= alpha:
+        low_high_mask >>= (alpha-number)*8
+    else:
+        low_high_mask <<= (number-alpha)*8
+
+    if number <= 7-alpha:
+        high_low_mask >>= ((7-alpha)-number)*8
+    else:
+        high_low_mask <<= (number-(7-alpha))*8
+
+    res = 1 << pos
+    res ^= (low_high_mask | high_low_mask)
+    res &= 0xffffffffffffffff
+    return (count_set_bits(int(res)), res)
