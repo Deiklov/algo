@@ -1,6 +1,6 @@
 import pytest
 from load_data import load_files_for_bits
-from figures import bishop_mask, king_mask, horse_mask, rook_mask
+from figures import bishop_mask, king_mask, horse_mask, queen_mask, rook_mask
 
 
 @pytest.mark.parametrize("files", load_files_for_bits('../0.BITS 2/1.Bitboard - Король'))
@@ -29,3 +29,10 @@ def test_bishop_mask(files):
     in_pos, out_cnt, out_mask = files
     assert bishop_mask(in_pos)[0] == out_cnt
     assert bishop_mask(in_pos)[1] == out_mask
+
+
+@pytest.mark.parametrize("files", load_files_for_bits('../0.BITS 2/5.Bitboard - Ферзь'))
+def test_queen_mask(files):
+    in_pos, out_cnt, out_mask = files
+    assert queen_mask(in_pos)[0] == out_cnt
+    assert queen_mask(in_pos)[1] == out_mask

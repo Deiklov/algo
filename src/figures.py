@@ -13,7 +13,6 @@ def king_mask(pos: int):
         Kaleft >> 9) | (bit_pos >> 8) | (Karight >> 7)
     # adaptive for python int
     mask = mask & 0xffffffffffffffff
-
     return (count_set_bits_linear(int(mask)), mask)
 
 
@@ -23,7 +22,6 @@ def horse_mask(pos: int):
     nAB = 0xFcFcFcFcFcFcFcFc
     nH = 0x7f7f7f7f7f7f7f7f
     nGH = 0x3f3f3f3f3f3f3f3f
-    # для тех что на 1-2 вертикали позиции, отвечающие за сдвиг влево обнулятся
     mask = nGH & (bit_pos << 6 | bit_pos >> 10) | nH & (bit_pos << 15 | bit_pos >> 17) | nA & (
         bit_pos << 17 | bit_pos >> 15) | nAB & (bit_pos << 10 | bit_pos >> 6)
     # adaptive for python int
@@ -64,3 +62,10 @@ def bishop_mask(pos: int):
     res ^= (low_high_mask | high_low_mask)
     res &= 0xffffffffffffffff
     return (count_set_bits(int(res)), res)
+
+
+def queen_mask(pos: int):
+    mask_bishop = bishop_mask(pos)[1]
+    mask_rook = rook_mask(pos)[1]
+    res = mask_bishop | mask_rook
+    return (count_set_bits_cash(int(res)), res)

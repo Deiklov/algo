@@ -6,3 +6,5 @@ rook:
 	pytest -v -s --durations=0 test_simple.py::test_rook_mask
 bishop:
 	pytest -v -s --durations=0 test_simple.py::test_bishop_mask
+queen:
+	pytest -v -s --durations=0 test_simple.py::test_queen_mask
