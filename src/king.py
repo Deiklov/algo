@@ -18,9 +18,25 @@ def king_mask(pos: int):
     return (countSetBits(int(mask)), mask)
 
 
+def horse_mask(pos: int):
+    bit_pos = 1 << pos
+    nA = 0xFeFeFeFeFeFeFeFe
+    nAB = 0xFcFcFcFcFcFcFcFc
+    nH = 0x7f7f7f7f7f7f7f7f
+    nGH = 0x3f3f3f3f3f3f3f3f
+    # для тех что на 1-2 вертикали позиции, отвечающие за сдвиг влево обнулятся
+    mask = nGH & (bit_pos << 6 | bit_pos >> 10) | nH & (bit_pos << 15 | bit_pos >> 17) | nA & (
+        bit_pos << 17 | bit_pos >> 15) | nAB & (bit_pos << 10 | bit_pos >> 6)
+    # adaptive for python int
+    mask = mask & 0xffffffffffffffff
+
+    return (countSetBits(int(mask)), mask)
+
+
 def countSetBits(n: int):
     count = 0
     while (n):
         n &= (n-1)
         count += 1
     return count
+
