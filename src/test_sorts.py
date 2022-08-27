@@ -1,6 +1,6 @@
 from importlib.metadata import files
 import pytest
-from sorts_algo import bubble, insertion, insertion_shift
+from sorts_algo import bubble, insertion, insertion_binary_shift, insertion_shift
 
 from load_data import load_array
 
@@ -20,6 +20,12 @@ from load_data import load_array
 def test_insertion_shift_sort(files):
     size, input, output = files
     assert insertion_shift(input, size) == output
+
+
+@pytest.mark.parametrize("files", load_array('../src/sorting-tests/0.random'))
+def test_insertion_binary_shift_sort(files):
+    size, input, output = files
+    assert insertion_binary_shift(input, size) == output
 
 # @pytest.mark.parametrize("files", load_array('../src/sorting-tests/0.random'))
 # def test_shell_sort(files):
