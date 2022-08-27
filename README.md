@@ -6,7 +6,7 @@
 | BubbleSort                 | 0   | 0.01  | 8.38   | ---     | ---       | ---        |
 | InsertionSort              | 0   | 0.11  | 7.31   | ---     | ---       | ---        |
 | ShellSort                  |     |       |        |         |           |            |
-| busted BubbleSort          |     |       |        |         |           |            |
+| BubbleSort with swap count | 0   | 0.09  | 9.16   | ---     | ---       | ---        |
 | InsertionSort shift        | 0   | 0.04  | 3.81   | 395.38  | ---       | ---        |
 | InsertionSort binary shift | 0   | 0     | 1.94   | 218.32  | ---       | ---        |
 | busted ShellSort           |     |       |        |         |           |            |

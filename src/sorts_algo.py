@@ -1,8 +1,26 @@
+from enum import Flag
+
+
 def bubble(arr: list, size: int) -> list:
     for i in range(size):
         for j in range(size-i-1):
             if arr[j] > arr[j+1]:
                 swap(arr, j, j+1)
+    return arr
+
+
+def bubble_with_count_exchange(arr: list, size: int) -> list:
+    is_sorted = True
+    for i in range(size):
+        for j in range(size-i-1):
+            if arr[j] > arr[j+1]:
+                swap(arr, j, j+1)
+                is_sorted = False
+        if is_sorted:
+            return arr
+        else:
+            is_sorted = False
+
     return arr
 
 
@@ -62,7 +80,6 @@ def swap(arr: list, ind1: int, ind2: int):
     temp = arr[ind1]
     arr[ind1] = arr[ind2]
     arr[ind2] = temp
-
 
     # def shell(arr: list, size: int) -> list:
     #     d = size
