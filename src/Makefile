@@ -2,3 +2,7 @@ bubble:
 	pytest -v -s --durations=0 test_sorts.py::test_bubble_sort
 insertion:
 	pytest -v -s --durations=0 test_sorts.py::test_insertion_sort
+insertion_shift:
+	pytest -v -s --durations=0 test_sorts.py::test_insertion_shift_sort
+shell:
+	pytest -v -s --durations=0 test_sorts.py::test_shell_sort
