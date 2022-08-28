@@ -77,20 +77,21 @@ def binary_search(arr: list, low: int, high: int, elem: int):
 
 
 def swap(arr: list, ind1: int, ind2: int):
-    temp = arr[ind1]
-    arr[ind1] = arr[ind2]
-    arr[ind2] = temp
+    arr[ind2], arr[ind1] = arr[ind1], arr[ind2]
 
-    # def shell(arr: list, size: int) -> list:
-    #     d = size
-    #     while d > 0:
-    #         for i in range(size):
-    #             for j in range(i, 0, d):
-    #                 if arr[j] < arr[j-d]:
-    #                     temp = arr[j]
-    #                     arr[j] = arr[j-d]
-    #                     arr[j-d] = temp
-    #         d //= 2
-    #     return arr
-# print(insertion_binary_shift([7, 0, 6, 1, 3, 2, 8, 5, 4, 9], 10))
+
+def shell_sort(arr: list, size: int) -> list:
+    last_index = size
+    step = size//2
+    while step > 0:
+        for i in range(step, last_index, 1):
+            j = i
+            delta = j - step
+            while delta >= 0 and arr[delta] > arr[j]:
+                arr[delta], arr[j] = arr[j], arr[delta]
+                j = delta
+                delta = j - step
+        step //= 2
+    return arr
+# print(shell_sort([7, 0, 6, 1, 3, 2, 8, 5, 4, 9], 10))
 # print(binary_search([7, 0, 6, 1, 3, 2, 8, 5, 4, 9], 0,9,))
