@@ -6,8 +6,11 @@ numpy==1.23.2
 packaging==21.3
 pluggy==1.0.0
 py==1.11.0
+py-cpuinfo==8.0.0
 pycodestyle==2.9.1
 pyparsing==3.0.9
 pytest==7.1.2
+pytest-benchmark==3.4.1
+pytest-timeout==2.1.0
 toml==0.10.2
 tomli==2.0.1
