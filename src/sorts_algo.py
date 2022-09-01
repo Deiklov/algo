@@ -1,45 +1,41 @@
+def mergeSort(arr: list) -> list:
+    if len(arr) > 1:
+        # Finding the mid of the array
+        mid = len(arr)//2
 
-class Heapsort:
-    def __init__(self, arr: list, size: int) -> None:
-        self.arr = arr
-        self.size = size
+        # Dividing the array elements
+        L = arr[:mid]
 
-    def sort(self) -> list:
-        for root in range(self.size//2-1, -1,-1):
-            self.heapify(root, self.size)
-        for j in range(self.size-1, -1,-1):
-            self.swap(0, j)
-            self.heapify(0, j)
-        return self.arr
+        # into 2 halves
+        R = arr[mid:]
 
-    def swap(self, ind1: int, ind2: int):
-        self.arr[ind2], self.arr[ind1] = self.arr[ind1], self.arr[ind2]
+        # Sorting the first half
+        mergeSort(L)
 
-    def heapify(self, root: int, size: int) -> None:
-        L = 2*root+1
-        R = 2*root+2
-        X = root
-        # fast swap max to root
-        if L < size and self.arr[L] > self.arr[X]:
-            X = L
-        if R < size and self.arr[R] > self.arr[X]:
-            X = R
-        if X == root:
-            return
-        # push max to root
-        self.swap(X, root)
-        self.heapify(X, size)
+        # Sorting the second half
+        mergeSort(R)
 
+        i = j = k = 0
 
-def selection(arr: list, size: int) -> list:
-    for i in range(size-1):
-        ind_max = 0
-        for j in range(size-i):
-            if arr[j] > arr[ind_max]:
-                ind_max = j
-        swap(arr, size-i-1, ind_max)
+        # Copy data to temp arrays L[] and R[]
+        while i < len(L) and j < len(R):
+            if L[i] < R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+
+        # Checking if any element was left
+        while i < len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+
+        while j < len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1
+
     return arr
-
-
-def swap(arr: list, ind1: int, ind2: int):
-    arr[ind2], arr[ind1] = arr[ind1], arr[ind2]
