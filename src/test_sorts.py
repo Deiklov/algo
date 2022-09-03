@@ -1,25 +1,22 @@
+from random import sample
 import pytest
-from gen_file import gen_rand_file
-from merge_sort import *
-
+from bucket_sort import bucket_sort
+from counting_sort import *
+import numpy as np
 from load_data import *
-from quick_sort import QuickSort
+from radix_sort import radixSort
 
 path = '../src/sorting-tests/3.revers'
 
 
-@pytest.mark.parametrize("files", load_array(path))
-def test_merge_sort(files):
-    size, input, output = files
-    assert mergeSort(input) == output
+@pytest.mark.parametrize("data", [np.random.randint(1000, size=1_000_000).tolist()])
+def test_counting_sort(data: np.ndarray):
+    assert countingSort(data) == data.sort()
 
+@pytest.mark.parametrize("data", [np.random.randint(1000, size=1_000_000).tolist()])
+def test_radix_sort(data: np.ndarray):
+    assert radixSort(data) == data.sort()
 
-@pytest.mark.parametrize("files", load_array(path))
-def test_quick_sort(files):
-    size, input, output = files
-    assert QuickSort(input, size).sort() == output
-
-
-def test_gen_file():
-    gen_rand_file(1_00_000, 10)
-    assert True
+@pytest.mark.parametrize("data", [np.random.randint(1000, size=1_000).tolist()])
+def test_bucket_sort(data: np.ndarray):
+    assert bucket_sort(data) == data.sort()
