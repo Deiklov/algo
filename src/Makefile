@@ -3,4 +3,4 @@ counting:
 radix:
 	pytest -v -s --pdb --durations=0 test_sorts.py::test_radix_sort
 bucket:
-	pytest -v -s --pdb --durations=0 test_sorts.py::test_bucket_sort
+	pytest -v -s --durations=0 test_sorts.py::test_bucket_sort

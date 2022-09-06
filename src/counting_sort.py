@@ -1,4 +1,4 @@
-def countingSort(array):
+def countingSort(array) -> list:
     size = len(array)
     output = [0] * size
 
@@ -24,3 +24,4 @@ def countingSort(array):
     # Copy the sorted elements into original array
     for i in range(0, size):
         array[i] = output[i]
+    return array

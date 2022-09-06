@@ -1,5 +1,5 @@
 # Main function to implement radix sort
-def radixSort(array):
+def radixSort(array) -> list:
     # Get maximum element
     max_element = max(array)
 
@@ -8,6 +8,7 @@ def radixSort(array):
     while max_element // place > 0:
         countingSort(array, place)
         place *= 10
+    return array
 # Radix sort in Python
 
 
