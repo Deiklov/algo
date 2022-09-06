@@ -1,6 +1,3 @@
-import numpy as np
-
-
 def bucketSort(array):
     largest = max(array)
     length = len(array)

@@ -22,7 +22,7 @@ def test_radix_sort(data: np.ndarray):
     assert sorted_data == data
 
 
-@pytest.mark.parametrize("data", [np.random.randint(1000, size=1_00_000).tolist()])
+@pytest.mark.parametrize("data", [np.random.randint(1000, size=1_000_000).tolist()])
 def test_bucket_sort(data: np.ndarray):
     # print(data)
     sorted_data = bucketSort(data)
